@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- CDN link for Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/styles/styles.css" />
+  </head>
+  <body>
+    <div
+      style="
+        background: url(/images/computer-banner.jpeg);
+        height: 45rem;
+        width: auto;
+      "
+      class="banner"
+    >
+      <%- include('partials/header.ejs') %>
+      <div>
+        <h1>Welcome User</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
+          quasi.
+        </p>
+      </div>
+    </div>
+    <div
+      class="row row-cols-2 row-cols-md-3 g-4"
+      style="margin: 0 auto; width: 80%; text-align: center"
+    >
+      <% products.forEach((product) => { %>
+      <div class="col">
+        <div
+          class="card text-center"
+          style="width: 70%; margin: auto; padding: 5px"
+        >
+          <img
+            src="/uploads/<%= product.image %>"
+            class="card-img-top"
+            alt="..."
+            style="width: 200px; height: 200px; margin: 0 auto"
+          />
+          <div class="card-body">
+            <h5 class="card-title"><%= product.name %></h5>
+            <a href="#" class="btn btn-dark">Add to cart</a>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+
+    <%- include('partials/footer.ejs') %>
+  </body>
+</html>

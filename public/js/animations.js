@@ -1,1 +1,1 @@
-$(".banner > div").fadeOut(0).fadeIn(1000);
+$(".banner > div").fadeOut(0).fadeIn(700);

@@ -16,5 +16,9 @@
 }
 
 .container-fluid > h2 {
-  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.admin-form {
+  margin: 20px;
 }
