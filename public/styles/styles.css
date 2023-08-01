@@ -1,0 +1,20 @@
+.banner {
+  position: relative;
+}
+
+.banner > div {
+  position: absolute;
+  color: white;
+  bottom: 20%;
+  left: 38.5%;
+  width: 20rem;
+  text-align: center;
+}
+
+.invisible {
+  display: none;
+}
+
+.container-fluid > h2 {
+  margin-top: 10px;
+}
