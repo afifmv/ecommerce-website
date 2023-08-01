@@ -14,42 +14,34 @@
     <link rel="stylesheet" href="/styles/styles.css" />
   </head>
   <body>
+    <%- include('partials/header.ejs') %>
     <div
-      style="
-        background: url(/images/computer-banner.jpeg);
-        height: 45rem;
-        width: auto;
-      "
-      class="banner"
-    >
-      <%- include('partials/header.ejs') %>
-      <div>
-        <h1>Welcome User</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
-          quasi.
-        </p>
-      </div>
-    </div>
-    <div
-      class="row row-cols-2 row-cols-md-3 g-4"
-      style="margin: 0 auto; width: 80%; text-align: center"
+      class="row row-cols-2 row-cols-md-3 g-4 h-100"
+      style="margin: 0 auto; width: 60%; text-align: center"
     >
       <% products.forEach((product) => { %>
       <div class="col">
-        <div
-          class="card text-center"
-          style="width: 70%; margin: auto; padding: 5px"
-        >
+        <div class="card text-center h-100" style="width: 18rem">
           <img
             src="/uploads/<%= product.image %>"
             class="card-img-top"
             alt="..."
-            style="width: 200px; height: 200px; margin: 0 auto"
+            style="margin: auto"
           />
-          <div class="card-body">
+          <div class="card-body" style="position: relative">
             <h5 class="card-title"><%= product.name %></h5>
-            <a href="#" class="btn btn-dark">Add to cart</a>
+            <a
+              href="/addtocart/<%= product.id %>"
+              class="btn btn-outline-dark"
+              style="position: relative; bottom: 1px; right: 1px; padding: 4px"
+              >Add to Cart</a
+            >
+            <a
+              href="/view/<%= product.id %>"
+              class="btn btn-outline-dark"
+              style="position: relative; bottom: 1px; right: 1px; padding: 4px"
+              >View More</a
+            >
           </div>
         </div>
       </div>

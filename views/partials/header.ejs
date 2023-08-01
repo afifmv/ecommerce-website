@@ -1,63 +1,158 @@
-<nav
-  class="navbar navbar-expand-lg"
+<div
   style="
-    background-color: black;
-    padding: 30px;
-    z-index: 1;
-    background: transparent;
+    background: url(/images/computer-banner.jpeg);
+    height: 45rem;
+    width: auto;
   "
-  data-bs-theme="dark"
+  class="banner"
 >
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">E-Commerce</a>
+  <nav
+    class="navbar navbar-expand-lg"
+    style="
+      background-color: black;
+      padding: 30px;
+      z-index: 1;
+      background: transparent;
+    "
+    data-bs-theme="dark"
+  >
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">E-Commerce</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <% if (locals.user) { %>
+          <li class="nav-item dropdown active">
+            <a
+              class="nav-link dropdown-toggle active"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <%= user.username %>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/logout">Logout</a></li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  data-bs-toggle="offcanvas"
+                  href="#offcanvasExample"
+                  role="button"
+                  aria-controls="offcanvasExample"
+                >
+                  My cart
+                </a>
+              </li>
+            </ul>
+          </li>
+          <% } else { %>
+          <li class="nav-item dropdown active">
+            <a
+              class="nav-link dropdown-toggle active"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Account
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/login">Login</a></li>
+              <li><a class="dropdown-item" href="/register">Register</a></li>
+            </ul>
+          </li>
+          <% } %>
+          <li class="nav-item dropdown active">
+            <a
+              class="nav-link dropdown-toggle active"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              View Products
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/products/shirt">Shirt</a></li>
+              <li><a class="dropdown-item" href="/products/pants">Pant</a></li>
+              <li>
+                <a class="dropdown-item" href="/products/shorts">Shorts</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div>
+    <% if (locals.user) { %>
+    <h1>Hey, <%= user.username %></h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, quasi.
+    </p>
+    <% } else { %>
+    <h1>Welcome Guest</h1>
+    <p>
+      Kindly <a href="/register" style="text-decoration: none">Register</a> with
+      us for a more customized user experience.
+    </p>
+    <% } %>
+  </div>
+</div>
+
+<% if (locals.user) { %>
+<div
+  class="offcanvas offcanvas-start"
+  tabindex="-1"
+  id="offcanvasExample"
+  aria-labelledby="offcanvasExampleLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Cart</h5>
     <button
-      class="navbar-toggler"
       type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNavDropdown"
-      aria-controls="navbarNavDropdown"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <div>
+      <ul class="list-group list-group-flush">
+        <% user.my_cart.forEach((product) => { %>
+        <li class="list-group-item">
+          <div>
+            <p style="display: inline-block"><%= product.name %></p>
+            <span
+              style="
+                font-weight: bold;
+                display: inline-block;
+                position: absolute;
+                right: 10px;
+              "
+              >$<%= product.price %></span
+            >
+          </div>
         </li>
-        <li class="nav-item dropdown active">
-          <a
-            class="nav-link dropdown-toggle active"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Account
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Login</a></li>
-            <li><a class="dropdown-item" href="#">Register</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown active">
-          <a
-            class="nav-link dropdown-toggle active"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            View Products
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/products/shirt">Shirt</a></li>
-            <li><a class="dropdown-item" href="/products/pant">Pant</a></li>
-            <li><a class="dropdown-item" href="/products/jeans">Jeans</a></li>
-          </ul>
-        </li>
+        <% }) %>
       </ul>
     </div>
+    <a href="/checkout" class="btn btn-dark" style="margin: 10px">Checkout</a>
   </div>
-</nav>
+</div>
+<% } %>

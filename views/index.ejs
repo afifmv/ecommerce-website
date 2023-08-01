@@ -16,24 +16,7 @@
     <link rel="stylesheet" href="/styles/styles.css" />
   </head>
   <body>
-    <div
-      style="
-        background: url(/images/computer-banner.jpeg);
-        height: 45rem;
-        width: auto;
-      "
-      class="banner"
-    >
-      <%- include('partials/header.ejs') %>
-      <div>
-        <h1>Shopping?</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
-          quasi.
-        </p>
-      </div>
-    </div>
-
+    <%- include('partials/header.ejs') %>
     <div class="container-fluid">
       <h2>Featured Products</h2>
       <hr />
@@ -51,14 +34,21 @@
             src="/uploads/<%= product.image %>"
             class="card-img-top"
             alt="..."
-            style="width: 200px; height: 200px; margin: auto"
+            style="margin: auto"
           />
-          <div class="card-body">
+          <div class="card-body" style="position: relative">
             <h5 class="card-title"><%= product.name %></h5>
             <a
-              href="https://github.com/afifmv/CostControl.git"
-              class="btn btn-dark"
+              href="/addtocart/<%= product.id %>"
+              class="btn btn-outline-dark"
+              style="position: relative; bottom: 1px; right: 1px; padding: 4px"
               >Add to Cart</a
+            >
+            <a
+              href="/view/<%= product.id %>"
+              class="btn btn-outline-dark"
+              style="position: relative; bottom: 1px; right: 1px; padding: 4px"
+              >View More</a
             >
           </div>
         </div>

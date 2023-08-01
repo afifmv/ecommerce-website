@@ -14,24 +14,7 @@
     <link rel="stylesheet" href="/styles/styles.css" />
   </head>
   <body>
-    <div
-      style="
-        background: url(/images/computer-banner.jpeg);
-        height: 45rem;
-        width: auto;
-      "
-      class="banner"
-    >
-      <%- include('partials/header.ejs') %>
-      <div>
-        <h1>Welcome Admin</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
-          quasi.
-        </p>
-      </div>
-    </div>
-    <%- include('partials/footer.ejs') %>
+    <%- include('partials/header.ejs') %>
 
     <div class="container-fluid">
       <h2>Add Products</h2>
@@ -118,7 +101,6 @@
               <option>Shirt</option>
               <option>Pants</option>
               <option>Shorts</option>
-              <option>Sock</option>
             </select>
           </div>
           <div class="col-12">
@@ -133,5 +115,6 @@
         </form>
       </div>
     </div>
+    <%- include('partials/footer.ejs') %>
   </body>
 </html>

@@ -22,3 +22,24 @@
 .admin-form {
   margin: 20px;
 }
+
+.login-container {
+  /* border: 0.5px solid black; */
+  width: 40%;
+  margin: 10% auto;
+}
+
+.login-container > h2 {
+  margin-bottom: 5%;
+  text-align: center;
+}
+
+.checkout-container {
+  width: 70%;
+  margin: 20px auto;
+  position: relative;
+}
+
+.checkout-container > h2 {
+  text-align: center;
+}
