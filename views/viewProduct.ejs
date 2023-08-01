@@ -13,5 +13,29 @@
     />
     <link rel="stylesheet" href="/styles/styles.css" />
   </head>
-  <body></body>
+  <body>
+    <%- include('partials/header.ejs') %>
+    <div class="product-view-container">
+      <div>
+        <img
+          src="/uploads/<%= product.image %>"
+          alt=""
+          srcset=""
+          style="height: 100%"
+        />
+      </div>
+      <div>
+        <h2><%= product.name %></h2>
+        <p><%= product.description %></p>
+        <p class="price">$<%= product.price %></p>
+        <a
+          href="/addtocart/<%= product.id %>"
+          class="btn btn-outline-dark"
+          style="position: relative; bottom: 1px; right: 1px; padding: 4px"
+          >Add to Cart</a
+        >
+      </div>
+    </div>
+    <%- include('partials/footer.ejs') %>
+  </body>
 </html>

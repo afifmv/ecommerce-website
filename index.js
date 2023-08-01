@@ -83,18 +83,21 @@ app.get("/products/:type", async (req, res) => {
 
 app.get("/view/:id", async (req, res) => {
   const content = {
-    products: await Product.findById(req.params.id),
+    product: await Product.findById(req.params.id),
     user: req.user,
   };
   res.render("viewProduct.ejs", content);
 });
 
 app.get("/checkout", (req, res) => {
-  res.render("checkout.ejs", { user: req.user });
+  if (req.user) {
+    res.render("checkout.ejs", { user: req.user });
+  } else {
+    res.redirect("/login");
+  }
 });
 
 app.post("/addproduct", upload.single("image"), async (req, res) => {
-  console.log(req.file);
   const product = {
     name: req.body.name,
     price: req.body.price,

@@ -43,3 +43,35 @@
 .checkout-container > h2 {
   text-align: center;
 }
+
+.product-view-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100vh;
+  position: relative;
+}
+
+.product-view-container img {
+  margin: 20px;
+}
+
+.product-view-container h2 {
+  position: relative;
+  top: 5%;
+}
+
+.product-view-container p {
+  position: relative;
+  top: 5%;
+}
+
+.product-view-container .price {
+  position: relative;
+  top: 5.5%;
+  color: black;
+}
+
+.product-view-container a {
+  position: relative;
+  top: 5.5%;
+}
