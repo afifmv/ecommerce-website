@@ -24,10 +24,34 @@
           style="height: 100%"
         />
       </div>
-      <div>
-        <h2><%= product.name %></h2>
+      <div class="details">
+        <h2 style="display: inline-block"><%= product.name %></h2>
+        <% if (product.sale.isSale) { %>
+        <p
+          style="
+            display: inline-block;
+            position: relative;
+            left: 10px;
+            top: 5%;
+            color: red;
+          "
+        >
+          -<%= product.sale.discount %> %
+        </p>
+        <% } %>
         <p><%= product.description %></p>
+        <% if (product.sale.isSale) { %>
+        <div class="discount-div">
+          <p class="price" style="display: inline-block">
+            $<%= product.price %>
+          </p>
+          <p class="sale" style="display: inline-block">
+            $<%= product.sale.discount * product.price / 100 %>
+          </p>
+        </div>
+        <% } else { %>
         <p class="price">$<%= product.price %></p>
+        <% } %>
         <a
           href="/addtocart/<%= product.id %>"
           class="btn btn-outline-dark"
@@ -35,6 +59,60 @@
           >Add to Cart</a
         >
       </div>
+    </div>
+    <div class="review-container">
+      <h2>Reviews</h2>
+      <hr />
+      <ul class="list-group">
+        <% product.reviews.forEach((review) => { %>
+        <li
+          class="list-group-item d-flex justify-content-between align-items-start"
+        >
+          <div class="ms-2 me-auto">
+            <div class="fw-bold"><%= review.user %></div>
+            <%= review.message %>
+          </div>
+          <span class="badge bg-primary rounded-pill">Level</span>
+        </li>
+        <% }); %>
+      </ul>
+      <form action="/addreview" method="post" style="margin-top: 5%">
+        <div class="input-group">
+          <span class="input-group-text">Enter Review</span>
+          <textarea
+            class="form-control"
+            aria-label="With textarea"
+            name="message"
+          ></textarea>
+        </div>
+        <div class="col-md-3" style="margin-top: 1%">
+          <label for="validationCustom04" class="form-label">Rating</label>
+          <select
+            class="form-select"
+            id="validationCustom04"
+            required
+            name="rating"
+          >
+            <option selected disabled value="">Choose...</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+        <div style="margin-top: 2%">
+          <button class="btn btn-primary" type="submit" style="margin: auto">
+            Submit Review
+          </button>
+        </div>
+        <input
+          type="text"
+          style="display: none"
+          value="<%= product.id %>"
+          name="id"
+        />
+      </form>
     </div>
     <%- include('partials/footer.ejs') %>
   </body>

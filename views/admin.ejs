@@ -115,6 +115,123 @@
         </form>
       </div>
     </div>
+
+    <hr />
+
+    <div class="container-fluid">
+      <h2>Update Products</h2>
+      <hr />
+      <div class="admin-form">
+        <form
+          action="/updateproduct"
+          autocomplete="off"
+          method="post"
+          class="row g-3 needs-validation"
+          novalidate
+        >
+          <div class="col-md-4">
+            <label for="validationCustom01" class="form-label"
+              >Product ID</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="validationCustom01"
+              value=""
+              name="id"
+              required
+            />
+          </div>
+          <div class="col-md-4">
+            <label for="validationCustom01" class="form-label">New name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="validationCustom01"
+              value=""
+              name="name"
+              required
+            />
+          </div>
+          <div class="col-md-1">
+            <label for="validationCustom02" class="form-label">Price </label>
+            <input
+              type="text"
+              class="form-control"
+              id="validationCustom02"
+              value=""
+              name="price"
+              required
+              style="width: 100px"
+            />
+            <div class="valid-feedback">Looks good!</div>
+          </div>
+          <div class="col-md-1">
+            <label for="validationCustomUsername" class="form-label"
+              >Stock</label
+            >
+            <div class="input-group has-validation">
+              <input
+                type="text"
+                class="form-control"
+                id="validationCustomUsername"
+                aria-describedby="inputGroupPrepend"
+                name="stock"
+                required
+                style="width: 10px"
+              />
+            </div>
+          </div>
+          <div class="col-md-1">
+            <label for="validationCustomUsername" class="form-label"
+              >Sale</label
+            >
+            <div class="input-group has-validation">
+              <input
+                type="text"
+                class="form-control"
+                id="validationCustomUsername"
+                aria-describedby="inputGroupPrepend"
+                name="sale"
+                required
+                style="width: 10px"
+              />
+            </div>
+          </div>
+          <div class="col-md-7">
+            <label for="validationCustom03" class="form-label"
+              >Description</label
+            >
+            <textarea
+              class="form-control"
+              name="description"
+              id="validationCustom03"
+              required
+            >
+            </textarea>
+          </div>
+          <div class="col-md-3">
+            <label for="" class="form-label">Type</label>
+            <br />
+            <select name="type" class="form-select">
+              <option>Shirt</option>
+              <option>Pants</option>
+              <option>Shorts</option>
+            </select>
+          </div>
+          <br />
+          <div class="col-12">
+            <button
+              class="btn btn-primary"
+              type="submit"
+              style="margin-top: 10px"
+            >
+              Submit form
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
     <%- include('partials/footer.ejs') %>
   </body>
 </html>

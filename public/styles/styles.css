@@ -16,7 +16,7 @@
 }
 
 .container-fluid > h2 {
-  padding-top: 10px;
+  padding-top: 3%;
 }
 
 .admin-form {
@@ -36,7 +36,7 @@
 
 .checkout-container {
   width: 70%;
-  margin: 20px auto;
+  margin: 2% auto;
   position: relative;
 }
 
@@ -52,26 +52,32 @@
 }
 
 .product-view-container img {
-  margin: 20px;
+  margin: 3%;
 }
 
-.product-view-container h2 {
-  position: relative;
-  top: 5%;
-}
-
-.product-view-container p {
-  position: relative;
-  top: 5%;
-}
-
-.product-view-container .price {
+.product-view-container > details {
   position: relative;
   top: 5.5%;
-  color: black;
 }
 
-.product-view-container a {
+.details > * {
   position: relative;
   top: 5.5%;
+  margin-right: 10%;
+}
+
+.details > .discount-div > .price {
+  text-decoration: line-through;
+  margin-right: 1%;
+}
+
+.details > .discount-div > .sale {
+  color: red;
+  font-weight: bold;
+}
+
+.review-container {
+  margin: auto;
+  margin-top: 5%;
+  width: 80%;
 }

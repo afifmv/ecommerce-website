@@ -27,6 +27,12 @@ app.use(express.static("public"));
 
 mongoose.connect("mongodb://127.0.0.1:27017/shoppingStoreDB");
 
+const reviewSchema = new mongoose.Schema({
+  user: String,
+  message: String,
+  rating: Number,
+});
+
 const productSchema = new mongoose.Schema({
   name: String,
   stock: Number,
@@ -37,6 +43,20 @@ const productSchema = new mongoose.Schema({
   popularity: {
     type: Number,
     default: 0,
+  },
+  sale: {
+    isSale: {
+      type: Boolean,
+      default: false,
+    },
+    discount: {
+      type: Number,
+      default: false,
+    },
+  },
+  reviews: {
+    type: [reviewSchema],
+    default: [],
   },
 });
 
@@ -66,7 +86,7 @@ app.get("/admin", (req, res) => {
 });
 
 app.get("/register", (req, res) => {
-  res.render("register.ejs/");
+  res.render("register.ejs");
 });
 
 app.get("/login", (req, res) => {
@@ -144,6 +164,35 @@ app.post("/register", (req, res) => {
   );
 });
 
+app.post("/updateproduct", async (req, res) => {
+  var isSale;
+  var discount;
+  if (req.body.sale > 0) {
+    isSale = true;
+    discount = req.body.sale;
+  } else {
+    isSale = false;
+    discount = 0;
+  }
+  const updateFeature = {
+    name: req.body.name,
+    stock: req.body.stock,
+    price: req.body.price,
+    description: req.body.description,
+    type: req.body.type.toLowerCase(),
+    sale: {
+      isSale: isSale,
+      discount: discount,
+    },
+  };
+  const response = await Product.updateOne(
+    { _id: req.body.id },
+    updateFeature
+  ).exec();
+  console.log(req.body);
+  res.redirect("/admin");
+});
+
 app.get("/logout", (req, res) => {
   req.logout(function (err) {
     if (err) {
@@ -166,6 +215,31 @@ app.post("/login", (req, res) => {
       });
     }
   });
+});
+
+app.post("/addreview", async (req, res) => {
+  if (req.user) {
+    const review = {
+      user: req.user.username,
+      message: req.body.message,
+      rating: req.body.rating,
+    };
+    var oldReviews = await Product.findById(req.body.id);
+    oldReviews.reviews.push(review);
+    await Product.updateOne({ _id: req.body.id }, oldReviews).exec();
+    res.redirect("/");
+  } else {
+    res.redirect("/login");
+  }
+});
+
+app.get("/buy", async (req, res) => {
+  req.user.my_cart.forEach(async (product) => {
+    const stock = product.stock - 1;
+    await Product.updateOne({ _id: product.id }, { stock: stock }).exec();
+  });
+  await User.updateOne({ username: req.user.username }, { my_cart: [] });
+  res.redirect("/");
 });
 
 app.listen(port, () => {
