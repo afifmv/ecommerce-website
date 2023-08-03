@@ -64,6 +64,7 @@ const userSchema = new mongoose.Schema({
   username: String,
   password: String,
   my_cart: { type: [productSchema], default: [] },
+  reviews: { type: [reviewSchema], default: [] },
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -227,6 +228,11 @@ app.post("/addreview", async (req, res) => {
     var oldReviews = await Product.findById(req.body.id);
     oldReviews.reviews.push(review);
     await Product.updateOne({ _id: req.body.id }, oldReviews).exec();
+
+    var oldReviews = await User.findById(req.user.id);
+    oldReviews.reviews.push(review);
+    console.log(oldReviews);
+    await User.updateOne({ username: req.user.username }, oldReviews);
     res.redirect("/");
   } else {
     res.redirect("/login");

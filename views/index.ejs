@@ -30,6 +30,13 @@
       >
         <% products.forEach((product) => { %>
         <div class="card text-center" style="width: 18rem">
+          <% var count = 0.0; var totalRating = 0.0; var rating =
+          totalRating/count; product.reviews.forEach((review) => { count++;
+          totalRating = totalRating + review.rating }); if (count != 0) { %>
+          <p class="rating">
+            &#9733; <%= (totalRating/count).toFixed(1) %> / 5.0
+          </p>
+          <% } %>
           <img
             src="/uploads/<%= product.image %>"
             class="card-img-top"

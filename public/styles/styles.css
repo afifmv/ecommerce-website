@@ -56,8 +56,7 @@
 }
 
 .product-view-container > details {
-  position: relative;
-  top: 5.5%;
+  margin-top: 5%;
 }
 
 .details > * {
@@ -68,7 +67,7 @@
 
 .details > .discount-div > .price {
   text-decoration: line-through;
-  margin-right: 1%;
+  margin: 5%;
 }
 
 .details > .discount-div > .sale {
@@ -80,4 +79,11 @@
   margin: auto;
   margin-top: 5%;
   width: 80%;
+}
+
+.card > .rating {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 4%;
 }
